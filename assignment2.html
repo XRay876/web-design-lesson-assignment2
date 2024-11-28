@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Assignment 2</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    
+    <style>
+        #task1 {
+            display: flex;
+            max-width: 300px;
+            flex-direction: column;
+            gap: 5px;
+        } 
+
+        #task1 p {
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        #buttonTask2 {
+            color:aqua;
+            font-size: 16px;
+            background-color: rgb(2, 96, 2);
+            transition: all 500ms ease;
+        }
+    
+        #buttonTask2.changeColor {
+            background-color: rgb(142, 29, 29);
+        }
+
+        #task2 ul li {
+            cursor: pointer;
+            color: rgba(0, 0, 59, 0.82);
+            font-size: 18px;
+        }
+
+        #box {
+            width: 200px;
+            height: 200px;
+            padding: 20px;
+            border: 5px solid black;
+            margin: 15px;
+            font-size: 25px;
+            color: rgb(8, 248, 220);
+            background-color: rgb(9, 185, 32);
+            transition: all 0.5s ease;
+        }
+    </style>
+</head>
+
+
+
+<body>
+    <section id="task1">
+        <h1>Task1</h1>
+        <label for="width"><b>Width</b></label>
+        <input id="widthNum" name="width" type="text">
+        <label for="length"><b>Length</b></label>
+        <input id="lengthName" name="length" type="text">
+        <button id="buttonTask1">Calculate Area</button>
+        <p id="areaResult"></p>
+    </section>
+
+    <section id="task2">
+        <h1>Task2</h1>
+        <button id="buttonTask2">Click me!</button>
+    </section>
+
+    <section id="task3">
+        <h1>Task3</h1>
+        <ul id="ulTask3">
+            <li>First item</li>
+            <li>Second item</li>
+            <li>Third item</li>
+        </ul>
+    </section>
+
+    <section id="task4">
+        <h1>Task4</h1>
+        <div id="box"></div>
+    </section>
+</body>
+
+<script>
+    //task1
+    
+    const widthInput = document.getElementById('widthNum');
+    const heightInput = document.getElementById('lengthName');
+
+    function calculateArea(width, height) {    
+        return width * height;
+    }
+
+    document.getElementById('buttonTask1').addEventListener('click', () =>{
+        if (widthInput.value <= 0 || heightInput.value <= 0) {
+            alert('Width and height must be positive numbers.');
+            console.error('Please enter valid width and height');
+            return;
+        } 
+        console.log(calculateArea(widthInput.value, heightInput.value));
+        document.getElementById('areaResult').textContent = calculateArea(widthInput.value, heightInput.value);
+    });
+
+    //task2
+    document.getElementById('buttonTask2').addEventListener('click', function() {
+        this.classList.add('changeColor');
+        alert('Button clicked!');
+    });
+
+    //task3
+    const list = document.getElementById('ulTask3');
+    const li = document.createElement('li');
+    li.textContent = 'Fourth item';
+    list.appendChild(li);
+
+    list.addEventListener('click', function(e) {
+        const letters = 'ABCDEFG1234';
+        var newString = '';
+        for (var i = 0; i < letters.length; i++) {
+            newString += letters.charAt(Math.floor(Math.random() * letters.length));
+        }
+        e.target.textContent = newString;
+    });
+    
+    //task4
+    const box = document.getElementById('box');
+    box.addEventListener('click', function() {
+        box.style.backgroundColor = 'rgb(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ')';
+    });
+
+    box.addEventListener('mouseover', function() {
+        box.style.borderColor = 'rgb(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ')';
+    });
+    
+    box.addEventListener('mouseout', function() {
+        box.style.borderColor = 'rgb(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ')';
+    });
+
+</script>
+</html>
